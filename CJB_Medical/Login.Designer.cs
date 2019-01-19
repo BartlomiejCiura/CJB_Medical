@@ -31,6 +31,8 @@
             this.LblHeader = new System.Windows.Forms.Label();
             this.LblFooter = new System.Windows.Forms.Label();
             this.PnlMain = new System.Windows.Forms.Panel();
+            this.LblHaslo = new System.Windows.Forms.Label();
+            this.LblPesel = new System.Windows.Forms.Label();
             this.BtnRegister = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.BtnLogin = new System.Windows.Forms.Button();
@@ -59,12 +61,14 @@
             this.LblFooter.Name = "LblFooter";
             this.LblFooter.Size = new System.Drawing.Size(784, 30);
             this.LblFooter.TabIndex = 3;
-            this.LblFooter.Text = "LUBLIN, 2018";
+            this.LblFooter.Text = "LUBLIN, 2019";
             this.LblFooter.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // PnlMain
             // 
-            this.PnlMain.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.PnlMain.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.PnlMain.Controls.Add(this.LblHaslo);
+            this.PnlMain.Controls.Add(this.LblPesel);
             this.PnlMain.Controls.Add(this.BtnRegister);
             this.PnlMain.Controls.Add(this.label2);
             this.PnlMain.Controls.Add(this.BtnLogin);
@@ -77,11 +81,31 @@
             this.PnlMain.Size = new System.Drawing.Size(784, 482);
             this.PnlMain.TabIndex = 4;
             // 
+            // LblHaslo
+            // 
+            this.LblHaslo.AutoSize = true;
+            this.LblHaslo.Location = new System.Drawing.Point(210, 91);
+            this.LblHaslo.Name = "LblHaslo";
+            this.LblHaslo.Size = new System.Drawing.Size(44, 13);
+            this.LblHaslo.TabIndex = 7;
+            this.LblHaslo.Text = "HASŁO";
+            this.LblHaslo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // LblPesel
+            // 
+            this.LblPesel.AutoSize = true;
+            this.LblPesel.Location = new System.Drawing.Point(210, 56);
+            this.LblPesel.Name = "LblPesel";
+            this.LblPesel.Size = new System.Drawing.Size(41, 13);
+            this.LblPesel.TabIndex = 6;
+            this.LblPesel.Text = "PESEL";
+            this.LblPesel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // BtnRegister
             // 
             this.BtnRegister.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.BtnRegister.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnRegister.Location = new System.Drawing.Point(273, 265);
+            this.BtnRegister.Location = new System.Drawing.Point(257, 265);
             this.BtnRegister.Name = "BtnRegister";
             this.BtnRegister.Size = new System.Drawing.Size(260, 23);
             this.BtnRegister.TabIndex = 5;
@@ -104,7 +128,7 @@
             // 
             this.BtnLogin.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.BtnLogin.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnLogin.Location = new System.Drawing.Point(273, 115);
+            this.BtnLogin.Location = new System.Drawing.Point(257, 114);
             this.BtnLogin.Name = "BtnLogin";
             this.BtnLogin.Size = new System.Drawing.Size(260, 23);
             this.BtnLogin.TabIndex = 3;
@@ -115,7 +139,7 @@
             // TbPassword
             // 
             this.TbPassword.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.TbPassword.Location = new System.Drawing.Point(273, 89);
+            this.TbPassword.Location = new System.Drawing.Point(257, 88);
             this.TbPassword.Name = "TbPassword";
             this.TbPassword.Size = new System.Drawing.Size(260, 20);
             this.TbPassword.TabIndex = 2;
@@ -126,7 +150,7 @@
             // TBLogin
             // 
             this.TBLogin.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.TBLogin.Location = new System.Drawing.Point(273, 63);
+            this.TBLogin.Location = new System.Drawing.Point(257, 53);
             this.TBLogin.MaxLength = 11;
             this.TBLogin.Name = "TBLogin";
             this.TBLogin.Size = new System.Drawing.Size(260, 20);
@@ -137,8 +161,8 @@
             // 
             // label1
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label1.Location = new System.Drawing.Point(0, 10);
+            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(784, 50);
             this.label1.TabIndex = 0;
@@ -147,6 +171,7 @@
             // 
             // Login_Form
             // 
+            this.AcceptButton = this.BtnLogin;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
@@ -157,6 +182,7 @@
             this.DoubleBuffered = true;
             this.Name = "Login_Form";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LOGOWANIE";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Login_Form_FormClosing);
             this.PnlMain.ResumeLayout(false);
@@ -176,6 +202,8 @@
         private System.Windows.Forms.Button BtnLogin;
         private System.Windows.Forms.Button BtnRegister;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label LblHaslo;
+        private System.Windows.Forms.Label LblPesel;
     }
 }
 

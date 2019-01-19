@@ -29,13 +29,19 @@ namespace CJB_Medical
         {
             Register register = new Register();
             register.Show();
-            
-            this.Hide();
+            Hide();
+            using (CJBMedicalDBEntities entities = new CJBMedicalDBEntities())
+            {
+                //User user = new User();
+                //user.Registration_Date = DateTime.Now();
+                //user.Pesel = tb
+                //entities.User.Add();
+            }
         }
 
         private void Login_Form_FormClosing(object sender, FormClosingEventArgs e)
         {
-
+            
         }
 
         private void TbPassword_KeyDown(object sender, KeyEventArgs e)
