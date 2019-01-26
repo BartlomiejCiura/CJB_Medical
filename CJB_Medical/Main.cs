@@ -54,5 +54,37 @@ namespace CJB_Medical
             login_Form.Show();
             Hide();
         }
+
+        private void panelLekarzaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (panelLekarzaToolStripMenuItem.Text.Equals("Panel lekarza"))
+            {
+                panel1.Hide();
+                panel2.Show();
+                panelLekarzaToolStripMenuItem.Text = "Panel pacjenta";
+            }
+            else
+            {
+                panel1.Show();
+                panel2.Hide();
+                panelLekarzaToolStripMenuItem.Text = "Panel lekarza";
+            }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            foreach (Control item in tableLayoutPanel1.Controls)
+            {
+
+                if (item.Enabled == true)
+                {
+                    item.Enabled = false;
+                }
+                else
+                {
+                    item.Enabled = true;
+                }
+            }
+        }
     }
 }

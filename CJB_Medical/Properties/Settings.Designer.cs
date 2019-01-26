@@ -23,25 +23,15 @@ namespace CJB_Medical.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Provider=SQLNCLI11;Data Source=(localdb)\\mssqllocaldb;Integrated Security=SSPI;In" +
-            "itial Catalog=CJBMedical")]
-        public string ConnectionString {
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool t {
             get {
-                return ((string)(this["ConnectionString"]));
+                return ((bool)(this["t"]));
             }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=CJBMedical;Integrated Security" +
-            "=True;Pooling=False")]
-        public string CJBMedicalConnectionString {
-            get {
-                return ((string)(this["CJBMedicalConnectionString"]));
+            set {
+                this["t"] = value;
             }
         }
     }

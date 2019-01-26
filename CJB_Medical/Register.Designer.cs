@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.TbMiejscowosc = new System.Windows.Forms.TextBox();
             this.LblHeader = new System.Windows.Forms.Label();
             this.LblFooter = new System.Windows.Forms.Label();
@@ -37,6 +38,8 @@
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.TbNazwisko = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.TbEmail = new System.Windows.Forms.TextBox();
             this.TbTelefon = new System.Windows.Forms.TextBox();
             this.TbKodPocztowy = new System.Windows.Forms.TextBox();
@@ -44,7 +47,6 @@
             this.TbDom = new System.Windows.Forms.TextBox();
             this.TbUlica = new System.Windows.Forms.TextBox();
             this.TbPesel = new System.Windows.Forms.TextBox();
-            this.TbNazwisko = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -55,22 +57,27 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.TbImie = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.TbPassword = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.TbPasswordConfirm = new System.Windows.Forms.TextBox();
+            this.TbKey = new System.Windows.Forms.TextBox();
+            this.CbLekarz = new System.Windows.Forms.CheckBox();
+            this.TbImie = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.PnlMain.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // TbMiejscowosc
             // 
             this.TbMiejscowosc.Location = new System.Drawing.Point(122, 159);
             this.TbMiejscowosc.Name = "TbMiejscowosc";
-            this.TbMiejscowosc.Size = new System.Drawing.Size(314, 20);
-            this.TbMiejscowosc.TabIndex = 16;
+            this.TbMiejscowosc.Size = new System.Drawing.Size(310, 20);
+            this.TbMiejscowosc.TabIndex = 6;
+            this.TbMiejscowosc.Validating += new System.ComponentModel.CancelEventHandler(this.TbMiejscowosc_Validating);
             // 
             // LblHeader
             // 
@@ -112,10 +119,10 @@
             // BtnCancel
             // 
             this.BtnCancel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BtnCancel.Location = new System.Drawing.Point(247, 425);
+            this.BtnCancel.Location = new System.Drawing.Point(248, 453);
             this.BtnCancel.Name = "BtnCancel";
-            this.BtnCancel.Size = new System.Drawing.Size(297, 23);
-            this.BtnCancel.TabIndex = 5;
+            this.BtnCancel.Size = new System.Drawing.Size(312, 23);
+            this.BtnCancel.TabIndex = 1;
             this.BtnCancel.Text = "ANULUJ";
             this.BtnCancel.UseVisualStyleBackColor = true;
             this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
@@ -123,10 +130,10 @@
             // BtnRegister
             // 
             this.BtnRegister.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BtnRegister.Location = new System.Drawing.Point(247, 396);
+            this.BtnRegister.Location = new System.Drawing.Point(248, 424);
             this.BtnRegister.Name = "BtnRegister";
-            this.BtnRegister.Size = new System.Drawing.Size(297, 23);
-            this.BtnRegister.TabIndex = 4;
+            this.BtnRegister.Size = new System.Drawing.Size(312, 23);
+            this.BtnRegister.TabIndex = 0;
             this.BtnRegister.Text = "REJESTRUJ";
             this.BtnRegister.UseVisualStyleBackColor = true;
             this.BtnRegister.Click += new System.EventHandler(this.BtnRegister_Click);
@@ -135,11 +142,10 @@
             // 
             this.radioButton2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(390, 53);
+            this.radioButton2.Location = new System.Drawing.Point(392, 33);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(50, 17);
             this.radioButton2.TabIndex = 3;
-            this.radioButton2.TabStop = true;
             this.radioButton2.Text = "PANI";
             this.radioButton2.UseVisualStyleBackColor = true;
             // 
@@ -147,7 +153,9 @@
             // 
             this.radioButton1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(337, 53);
+            this.radioButton1.Checked = global::CJB_Medical.Properties.Settings.Default.t;
+            this.radioButton1.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::CJB_Medical.Properties.Settings.Default, "t", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.radioButton1.Location = new System.Drawing.Point(339, 33);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(47, 17);
             this.radioButton1.TabIndex = 2;
@@ -162,6 +170,8 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.Controls.Add(this.TbNazwisko, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label15, 0, 13);
             this.tableLayoutPanel1.Controls.Add(this.TbEmail, 1, 9);
             this.tableLayoutPanel1.Controls.Add(this.TbTelefon, 1, 8);
             this.tableLayoutPanel1.Controls.Add(this.TbKodPocztowy, 1, 7);
@@ -170,7 +180,6 @@
             this.tableLayoutPanel1.Controls.Add(this.TbDom, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.TbUlica, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.TbPesel, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.TbNazwisko, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label4, 0, 2);
@@ -181,14 +190,16 @@
             this.tableLayoutPanel1.Controls.Add(this.label9, 0, 7);
             this.tableLayoutPanel1.Controls.Add(this.label10, 0, 8);
             this.tableLayoutPanel1.Controls.Add(this.label11, 0, 9);
-            this.tableLayoutPanel1.Controls.Add(this.TbImie, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.label12, 0, 10);
             this.tableLayoutPanel1.Controls.Add(this.TbPassword, 1, 10);
             this.tableLayoutPanel1.Controls.Add(this.label13, 0, 11);
             this.tableLayoutPanel1.Controls.Add(this.TbPasswordConfirm, 1, 11);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(125, 76);
+            this.tableLayoutPanel1.Controls.Add(this.TbKey, 1, 13);
+            this.tableLayoutPanel1.Controls.Add(this.CbLekarz, 1, 12);
+            this.tableLayoutPanel1.Controls.Add(this.TbImie, 1, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(127, 56);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 12;
+            this.tableLayoutPanel1.RowCount = 14;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -200,65 +211,90 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(419, 314);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(466, 366);
             this.tableLayoutPanel1.TabIndex = 1;
-            // 
-            // TbEmail
-            // 
-            this.TbEmail.Location = new System.Drawing.Point(122, 237);
-            this.TbEmail.Name = "TbEmail";
-            this.TbEmail.Size = new System.Drawing.Size(314, 20);
-            this.TbEmail.TabIndex = 19;
-            // 
-            // TbTelefon
-            // 
-            this.TbTelefon.Location = new System.Drawing.Point(122, 211);
-            this.TbTelefon.Name = "TbTelefon";
-            this.TbTelefon.Size = new System.Drawing.Size(314, 20);
-            this.TbTelefon.TabIndex = 18;
-            // 
-            // TbKodPocztowy
-            // 
-            this.TbKodPocztowy.Location = new System.Drawing.Point(122, 185);
-            this.TbKodPocztowy.Name = "TbKodPocztowy";
-            this.TbKodPocztowy.Size = new System.Drawing.Size(314, 20);
-            this.TbKodPocztowy.TabIndex = 17;
-            // 
-            // TbLokal
-            // 
-            this.TbLokal.Location = new System.Drawing.Point(122, 133);
-            this.TbLokal.Name = "TbLokal";
-            this.TbLokal.Size = new System.Drawing.Size(314, 20);
-            this.TbLokal.TabIndex = 15;
-            // 
-            // TbDom
-            // 
-            this.TbDom.Location = new System.Drawing.Point(122, 107);
-            this.TbDom.Name = "TbDom";
-            this.TbDom.Size = new System.Drawing.Size(314, 20);
-            this.TbDom.TabIndex = 14;
-            // 
-            // TbUlica
-            // 
-            this.TbUlica.Location = new System.Drawing.Point(122, 81);
-            this.TbUlica.Name = "TbUlica";
-            this.TbUlica.Size = new System.Drawing.Size(314, 20);
-            this.TbUlica.TabIndex = 13;
-            // 
-            // TbPesel
-            // 
-            this.TbPesel.Location = new System.Drawing.Point(122, 55);
-            this.TbPesel.Name = "TbPesel";
-            this.TbPesel.Size = new System.Drawing.Size(314, 20);
-            this.TbPesel.TabIndex = 12;
             // 
             // TbNazwisko
             // 
             this.TbNazwisko.Location = new System.Drawing.Point(122, 29);
             this.TbNazwisko.Name = "TbNazwisko";
-            this.TbNazwisko.Size = new System.Drawing.Size(314, 20);
-            this.TbNazwisko.TabIndex = 11;
+            this.TbNazwisko.Size = new System.Drawing.Size(310, 20);
+            this.TbNazwisko.TabIndex = 1;
+            this.TbNazwisko.Validating += new System.ComponentModel.CancelEventHandler(this.TbNazwisko_Validating);
+            // 
+            // label15
+            // 
+            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(3, 344);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(113, 13);
+            this.label15.TabIndex = 21;
+            this.label15.Text = "KOD PLACÓWKI";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label15.Visible = false;
+            // 
+            // TbEmail
+            // 
+            this.TbEmail.Location = new System.Drawing.Point(122, 237);
+            this.TbEmail.Name = "TbEmail";
+            this.TbEmail.Size = new System.Drawing.Size(310, 20);
+            this.TbEmail.TabIndex = 9;
+            this.TbEmail.Validating += new System.ComponentModel.CancelEventHandler(this.TbEmail_Validating);
+            // 
+            // TbTelefon
+            // 
+            this.TbTelefon.Location = new System.Drawing.Point(122, 211);
+            this.TbTelefon.Name = "TbTelefon";
+            this.TbTelefon.Size = new System.Drawing.Size(310, 20);
+            this.TbTelefon.TabIndex = 8;
+            this.TbTelefon.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TbTelefon_KeyPress);
+            this.TbTelefon.Validating += new System.ComponentModel.CancelEventHandler(this.TbTelefon_Validating);
+            // 
+            // TbKodPocztowy
+            // 
+            this.TbKodPocztowy.Location = new System.Drawing.Point(122, 185);
+            this.TbKodPocztowy.Name = "TbKodPocztowy";
+            this.TbKodPocztowy.Size = new System.Drawing.Size(310, 20);
+            this.TbKodPocztowy.TabIndex = 7;
+            this.TbKodPocztowy.Validating += new System.ComponentModel.CancelEventHandler(this.TbKodPocztowy_Validating);
+            // 
+            // TbLokal
+            // 
+            this.TbLokal.Location = new System.Drawing.Point(122, 133);
+            this.TbLokal.Name = "TbLokal";
+            this.TbLokal.Size = new System.Drawing.Size(310, 20);
+            this.TbLokal.TabIndex = 5;
+            this.TbLokal.Validating += new System.ComponentModel.CancelEventHandler(this.TbLokal_Validating);
+            // 
+            // TbDom
+            // 
+            this.TbDom.Location = new System.Drawing.Point(122, 107);
+            this.TbDom.Name = "TbDom";
+            this.TbDom.Size = new System.Drawing.Size(310, 20);
+            this.TbDom.TabIndex = 4;
+            this.TbDom.Validating += new System.ComponentModel.CancelEventHandler(this.TbDom_Validating);
+            // 
+            // TbUlica
+            // 
+            this.TbUlica.Location = new System.Drawing.Point(122, 81);
+            this.TbUlica.Name = "TbUlica";
+            this.TbUlica.Size = new System.Drawing.Size(310, 20);
+            this.TbUlica.TabIndex = 3;
+            this.TbUlica.Validating += new System.ComponentModel.CancelEventHandler(this.TbUlica_Validating);
+            // 
+            // TbPesel
+            // 
+            this.TbPesel.Location = new System.Drawing.Point(122, 55);
+            this.TbPesel.MaxLength = 11;
+            this.TbPesel.Name = "TbPesel";
+            this.TbPesel.Size = new System.Drawing.Size(310, 20);
+            this.TbPesel.TabIndex = 2;
+            this.TbPesel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TbPesel_KeyPress);
+            this.TbPesel.Validating += new System.ComponentModel.CancelEventHandler(this.TbPesel_Validating);
             // 
             // label2
             // 
@@ -370,13 +406,6 @@
             this.label11.Text = "ADRES E-MAIL";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // TbImie
-            // 
-            this.TbImie.Location = new System.Drawing.Point(122, 3);
-            this.TbImie.Name = "TbImie";
-            this.TbImie.Size = new System.Drawing.Size(314, 20);
-            this.TbImie.TabIndex = 10;
-            // 
             // label12
             // 
             this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -392,14 +421,16 @@
             // 
             this.TbPassword.Location = new System.Drawing.Point(122, 263);
             this.TbPassword.Name = "TbPassword";
-            this.TbPassword.Size = new System.Drawing.Size(314, 20);
-            this.TbPassword.TabIndex = 19;
+            this.TbPassword.Size = new System.Drawing.Size(310, 20);
+            this.TbPassword.TabIndex = 10;
+            this.TbPassword.UseSystemPasswordChar = true;
+            this.TbPassword.Validating += new System.ComponentModel.CancelEventHandler(this.TbPassword_Validating);
             // 
             // label13
             // 
             this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(3, 293);
+            this.label13.Location = new System.Drawing.Point(3, 292);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(113, 13);
             this.label13.TabIndex = 9;
@@ -410,18 +441,54 @@
             // 
             this.TbPasswordConfirm.Location = new System.Drawing.Point(122, 289);
             this.TbPasswordConfirm.Name = "TbPasswordConfirm";
-            this.TbPasswordConfirm.Size = new System.Drawing.Size(314, 20);
-            this.TbPasswordConfirm.TabIndex = 19;
+            this.TbPasswordConfirm.Size = new System.Drawing.Size(310, 20);
+            this.TbPasswordConfirm.TabIndex = 11;
+            this.TbPasswordConfirm.UseSystemPasswordChar = true;
+            this.TbPasswordConfirm.Validating += new System.ComponentModel.CancelEventHandler(this.TbPasswordConfirm_Validating);
+            // 
+            // TbKey
+            // 
+            this.TbKey.Location = new System.Drawing.Point(122, 338);
+            this.TbKey.Name = "TbKey";
+            this.TbKey.Size = new System.Drawing.Size(310, 20);
+            this.TbKey.TabIndex = 13;
+            this.TbKey.UseSystemPasswordChar = true;
+            this.TbKey.Visible = false;
+            this.TbKey.Validating += new System.ComponentModel.CancelEventHandler(this.TbKey_Validating);
+            // 
+            // CbLekarz
+            // 
+            this.CbLekarz.AutoSize = true;
+            this.CbLekarz.Location = new System.Drawing.Point(122, 315);
+            this.CbLekarz.Name = "CbLekarz";
+            this.CbLekarz.Size = new System.Drawing.Size(133, 17);
+            this.CbLekarz.TabIndex = 12;
+            this.CbLekarz.Text = "JESTEŚ LEKARZEM?";
+            this.CbLekarz.UseVisualStyleBackColor = true;
+            this.CbLekarz.CheckedChanged += new System.EventHandler(this.CbLekarz_CheckedChanged);
+            // 
+            // TbImie
+            // 
+            this.TbImie.Location = new System.Drawing.Point(122, 3);
+            this.TbImie.Name = "TbImie";
+            this.TbImie.Size = new System.Drawing.Size(310, 20);
+            this.TbImie.TabIndex = 0;
+            this.TbImie.Validating += new System.ComponentModel.CancelEventHandler(this.TbImie_Validating);
             // 
             // label1
             // 
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(784, 50);
+            this.label1.Size = new System.Drawing.Size(784, 30);
             this.label1.TabIndex = 0;
             this.label1.Text = "REJESTRACJA";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // Register
             // 
@@ -441,6 +508,7 @@
             this.PnlMain.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -460,7 +528,6 @@
         private System.Windows.Forms.TextBox TbDom;
         private System.Windows.Forms.TextBox TbUlica;
         private System.Windows.Forms.TextBox TbPesel;
-        private System.Windows.Forms.TextBox TbNazwisko;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
@@ -480,5 +547,10 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox TbPasswordConfirm;
         private System.Windows.Forms.TextBox TbMiejscowosc;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox TbKey;
+        private System.Windows.Forms.CheckBox CbLekarz;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.TextBox TbNazwisko;
     }
 }

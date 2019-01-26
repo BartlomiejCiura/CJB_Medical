@@ -39,6 +39,8 @@
             this.TbPassword = new System.Windows.Forms.TextBox();
             this.TBLogin = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.BtnReset = new System.Windows.Forms.Button();
             this.PnlMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,6 +69,8 @@
             // PnlMain
             // 
             this.PnlMain.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.PnlMain.Controls.Add(this.BtnReset);
+            this.PnlMain.Controls.Add(this.label3);
             this.PnlMain.Controls.Add(this.LblHaslo);
             this.PnlMain.Controls.Add(this.LblPesel);
             this.PnlMain.Controls.Add(this.BtnRegister);
@@ -84,9 +88,10 @@
             // LblHaslo
             // 
             this.LblHaslo.AutoSize = true;
-            this.LblHaslo.Location = new System.Drawing.Point(210, 91);
+            this.LblHaslo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.LblHaslo.Location = new System.Drawing.Point(200, 91);
             this.LblHaslo.Name = "LblHaslo";
-            this.LblHaslo.Size = new System.Drawing.Size(44, 13);
+            this.LblHaslo.Size = new System.Drawing.Size(54, 16);
             this.LblHaslo.TabIndex = 7;
             this.LblHaslo.Text = "HASŁO";
             this.LblHaslo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -94,9 +99,10 @@
             // LblPesel
             // 
             this.LblPesel.AutoSize = true;
-            this.LblPesel.Location = new System.Drawing.Point(210, 56);
+            this.LblPesel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.LblPesel.Location = new System.Drawing.Point(200, 56);
             this.LblPesel.Name = "LblPesel";
-            this.LblPesel.Size = new System.Drawing.Size(41, 13);
+            this.LblPesel.Size = new System.Drawing.Size(51, 16);
             this.LblPesel.TabIndex = 6;
             this.LblPesel.Text = "PESEL";
             this.LblPesel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -105,7 +111,7 @@
             // 
             this.BtnRegister.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.BtnRegister.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnRegister.Location = new System.Drawing.Point(257, 265);
+            this.BtnRegister.Location = new System.Drawing.Point(256, 264);
             this.BtnRegister.Name = "BtnRegister";
             this.BtnRegister.Size = new System.Drawing.Size(260, 23);
             this.BtnRegister.TabIndex = 5;
@@ -116,6 +122,7 @@
             // label2
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label2.Location = new System.Drawing.Point(1, 203);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(784, 59);
@@ -162,12 +169,35 @@
             // label1
             // 
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(784, 50);
             this.label1.TabIndex = 0;
-            this.label1.Text = "ZALOGUJ SIĘ DO SYSTEMU";
+            this.label1.Text = "LOGOWANIE";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label3.Location = new System.Drawing.Point(0, 344);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(784, 27);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "NIE PAMIĘTASZ HASŁA?";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // BtnReset
+            // 
+            this.BtnReset.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.BtnReset.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnReset.Location = new System.Drawing.Point(256, 376);
+            this.BtnReset.Name = "BtnReset";
+            this.BtnReset.Size = new System.Drawing.Size(260, 23);
+            this.BtnReset.TabIndex = 9;
+            this.BtnReset.Text = "ZMIANA HASŁA";
+            this.BtnReset.UseVisualStyleBackColor = true;
             // 
             // Login_Form
             // 
@@ -204,6 +234,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label LblHaslo;
         private System.Windows.Forms.Label LblPesel;
+        private System.Windows.Forms.Button BtnReset;
+        private System.Windows.Forms.Label label3;
     }
 }
 
