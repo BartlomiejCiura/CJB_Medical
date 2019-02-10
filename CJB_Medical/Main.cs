@@ -45,7 +45,7 @@ namespace CJB_Medical
 
         private void oAplikacjiToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Autor aplikacji: Bartłomiej Ciura\nPraca inżynierska", "O aplikacji", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Autor aplikacji: Bartłomiej Ciura\nPraca inżynierska\nPromotor dr inż. Marcin Adamski", "O aplikacji", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void wylogujToolStripMenuItem_Click(object sender, EventArgs e)

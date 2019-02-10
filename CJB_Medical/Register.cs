@@ -51,8 +51,13 @@ namespace CJB_Medical
         {
             if (ValidateForm())
             {
-                using (CJBMedicalDBEntities entities = new CJBMedicalDBEntities())
+
+                using (CJBEntities entities = new CJBEntities())
                 {
+
+
+
+
                     User user = new User();
                     bool man = radioButton1.Checked;
                     bool woman = radioButton2.Checked;
@@ -64,15 +69,15 @@ namespace CJB_Medical
                     Address address = new Address();
                     address.Street = TbUlica.Text;
 
-                    Int32.TryParse(TbDom.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out int dom);
-                    address.House = dom;
 
-                    Int32.TryParse(TbLokal.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out int lokal);
-                    address.Flat = lokal;
+                   // address.House = TbDom.Text;
+
+
+                    //address.Flat = TbLokal.Text;
 
                     address.City = TbMiejscowosc.Text;
                     address.Postcode = TbKodPocztowy.Text;
-                    address.Province =
+
 
                     user.Phone = TbTelefon.Text;
                     user.Email = TbEmail.Text;
@@ -87,7 +92,8 @@ namespace CJB_Medical
                         user.Password = password;
                         user.Password_Salt = passSalt;
                         user.Password_Algorithm = "SHA-256";
-
+                        user.Registration_Date = DateTime.Now;
+                        
                     }
 
                     //var data = entities.Role;
@@ -96,6 +102,11 @@ namespace CJB_Medical
 
                     //   MessageBox.Show($"Id: {item.Id}, nazwa {item.Name}");
                     //}
+
+                    //string serializedUser = XMLSerializer.Serialize(user);
+                    //serializedUser = serializedUser.Replace("<", "zxc").Replace(">", "cxz");
+
+                   // WebService.service.AddUser(serializedUser);
 
                     Role role = entities.Role.Single(a => a.Id == 1);
                     role.User.Add(user);

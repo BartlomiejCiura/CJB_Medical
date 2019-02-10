@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CJBMedicalDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="CJBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Address">
           <Key>
             <PropertyRef Name="Id" />
@@ -184,7 +184,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CJBMedicalDBModelStoreContainer">
+        <EntityContainer Name="CJBModelStoreContainer">
           <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Attachment" EntityType="Self.Attachment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
@@ -227,7 +227,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="CJBMedicalDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="CJBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Address">
           <Key>
             <PropertyRef Name="Id" />
@@ -330,7 +330,7 @@
           <End Role="Attachment" Type="Self.Attachment" Multiplicity="0..1" />
           <End Role="Visit" Type="Self.Visit" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="CJBMedicalDBEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="CJBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Address" EntityType="Self.Address" />
           <EntitySet Name="Attachment" EntityType="Self.Attachment" />
           <EntitySet Name="Role" EntityType="Self.Role" />
@@ -359,9 +359,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CJBMedicalDBModelStoreContainer" CdmEntityContainer="CJBMedicalDBEntities">
+        <EntityContainerMapping StorageEntityContainer="CJBModelStoreContainer" CdmEntityContainer="CJBEntities">
           <EntitySetMapping Name="Address">
-            <EntityTypeMapping TypeName="CJBMedicalDBModel.Address">
+            <EntityTypeMapping TypeName="CJBModel.Address">
               <MappingFragment StoreEntitySet="Address">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Province" ColumnName="Province" />
@@ -374,7 +374,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Attachment">
-            <EntityTypeMapping TypeName="CJBMedicalDBModel.Attachment">
+            <EntityTypeMapping TypeName="CJBModel.Attachment">
               <MappingFragment StoreEntitySet="Attachment">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -383,7 +383,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Role">
-            <EntityTypeMapping TypeName="CJBMedicalDBModel.Role">
+            <EntityTypeMapping TypeName="CJBModel.Role">
               <MappingFragment StoreEntitySet="Role">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -391,7 +391,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="CJBMedicalDBModel.sysdiagrams">
+            <EntityTypeMapping TypeName="CJBModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -402,7 +402,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="User">
-            <EntityTypeMapping TypeName="CJBMedicalDBModel.User">
+            <EntityTypeMapping TypeName="CJBModel.User">
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Pesel" ColumnName="Pesel" />
@@ -422,7 +422,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Visit">
-            <EntityTypeMapping TypeName="CJBMedicalDBModel.Visit">
+            <EntityTypeMapping TypeName="CJBModel.Visit">
               <MappingFragment StoreEntitySet="Visit">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="User_Id" ColumnName="User_Id" />
@@ -436,7 +436,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="UserAddress" TypeName="CJBMedicalDBModel.UserAddress" StoreEntitySet="UserAddress">
+          <AssociationSetMapping Name="UserAddress" TypeName="CJBModel.UserAddress" StoreEntitySet="UserAddress">
             <EndProperty Name="Address">
               <ScalarProperty Name="Id" ColumnName="Address_ID" />
             </EndProperty>
@@ -444,7 +444,7 @@
               <ScalarProperty Name="Id" ColumnName="User_Id" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="UserRole" TypeName="CJBMedicalDBModel.UserRole" StoreEntitySet="UserRole">
+          <AssociationSetMapping Name="UserRole" TypeName="CJBModel.UserRole" StoreEntitySet="UserRole">
             <EndProperty Name="Role">
               <ScalarProperty Name="Id" ColumnName="Role_Id" />
             </EndProperty>
@@ -452,7 +452,7 @@
               <ScalarProperty Name="Id" ColumnName="User_Id" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="Visit_Attachment" TypeName="CJBMedicalDBModel.Visit_Attachment" StoreEntitySet="Visit_Attachment">
+          <AssociationSetMapping Name="Visit_Attachment" TypeName="CJBModel.Visit_Attachment" StoreEntitySet="Visit_Attachment">
             <EndProperty Name="Attachment">
               <ScalarProperty Name="Id" ColumnName="Attachment_Id" />
             </EndProperty>

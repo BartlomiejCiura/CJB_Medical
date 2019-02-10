@@ -13,10 +13,10 @@ namespace CJB_Medical
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class CJBMedicalDBEntities : DbContext
+    public partial class CJBEntities : DbContext
     {
-        public CJBMedicalDBEntities()
-            : base("name=CJBMedicalDBEntities")
+        public CJBEntities()
+            : base("name=CJBEntities")
         {
         }
     

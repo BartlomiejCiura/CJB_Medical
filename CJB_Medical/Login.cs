@@ -30,13 +30,12 @@ namespace CJB_Medical
             Register register = new Register();
             register.Show();
             Hide();
-            using (CJBMedicalDBEntities entities = new CJBMedicalDBEntities())
-            {
+           
                 //User user = new User();
                 //user.Registration_Date = DateTime.Now();
                 //user.Pesel = tb
                 //entities.User.Add();
-            }
+            
         }
 
         private void Login_Form_FormClosing(object sender, FormClosingEventArgs e)
