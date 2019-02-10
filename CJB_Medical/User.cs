@@ -17,7 +17,9 @@ namespace CJB_Medical
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
+            this.Schedule = new HashSet<Schedule>();
             this.Visit = new HashSet<Visit>();
+            this.Specjalizations = new HashSet<Specjalizations>();
         }
     
         public int Id { get; set; }
@@ -25,19 +27,25 @@ namespace CJB_Medical
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Gender { get; set; }
+        public string BloodType { get; set; }
         public Nullable<System.DateTime> Registration_Date { get; set; }
         public string Password { get; set; }
         public string Password_Salt { get; set; }
         public string Password_Algorithm { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
-        public Nullable<decimal> Height { get; set; }
-        public Nullable<decimal> Weight { get; set; }
-        public Nullable<decimal> Age { get; set; }
+        public Nullable<int> Height { get; set; }
+        public Nullable<int> Weight { get; set; }
+        public Nullable<int> Age { get; set; }
+        public string Room { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Schedule> Schedule { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Visit> Visit { get; set; }
         public virtual Address Address { get; set; }
         public virtual Role Role { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Specjalizations> Specjalizations { get; set; }
     }
 }

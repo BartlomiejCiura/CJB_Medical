@@ -49,34 +49,53 @@ namespace CJB_Medical
 
         private void BtnRegister_Click(object sender, EventArgs e)
         {
+
+            //using (CJBDatabaseEntities ent = new CJBDatabaseEntities())
+            //{
+
+            //    //Specjalizations specjalizations = new Specjalizations();
+            //    //foreach (var item in checkedListBox1.Items)
+            //    //{
+            //    //    specjalizations.Name = item.ToString();
+            //    //    ent.Specjalizations.Add(specjalizations);
+            //    //    ent.SaveChanges();
+            //    //}
+            //}
             if (ValidateForm())
             {
-
-                using (CJBEntities entities = new CJBEntities())
+                using (CJBDatabaseEntities entities = new CJBDatabaseEntities())
                 {
-
-
-
-
-                    User user = new User();
-                    bool man = radioButton1.Checked;
-                    bool woman = radioButton2.Checked;
-                    user.Gender = man ? "Meżczyzna" : "Kobieta";
-                    user.Name = TbImie.Text;
-                    user.Surname = TbNazwisko.Text;
-                    user.Pesel = TbPesel.Text;
-
                     Address address = new Address();
                     address.Street = TbUlica.Text;
-
-
-                   // address.House = TbDom.Text;
-
-
-                    //address.Flat = TbLokal.Text;
-
+                    address.House = TbDom.Text;
+                    address.Flat = TbLokal.Text;
                     address.City = TbMiejscowosc.Text;
                     address.Postcode = TbKodPocztowy.Text;
+                    address.Province = CbWojewodztwo.Text;
+
+                    entities.Address.Add(address);
+                    entities.SaveChanges();
+
+                    
+
+                    User user = new User();
+
+
+                    user.Name = TbImie.Text;
+                    user.Surname = TbNazwisko.Text;
+
+                    User userCzyInstnieje = new User();
+                    userCzyInstnieje = entities.User.FirstOrDefault(p => p.Pesel.Equals(TbPesel.Text));
+                    bool exist = userCzyInstnieje != null ? true : false;
+                    if (exist)
+                    {
+                        MessageBox.Show("Użytkownik o takim numeru pesel już ma założone konto. Jeśli nie pamiętasz hasła skontaktuj się z administratorem.");
+                        return;
+                    }
+                    user.Pesel = TbPesel.Text;
+                    bool man = radioButton1.Checked;
+                    user.Gender = man ? "Meżczyzna" : "Kobieta";
+
 
 
                     user.Phone = TbTelefon.Text;
@@ -93,8 +112,12 @@ namespace CJB_Medical
                         user.Password_Salt = passSalt;
                         user.Password_Algorithm = "SHA-256";
                         user.Registration_Date = DateTime.Now;
-                        
                     }
+
+                    user.Age = Convert.ToInt32(TbWiek.Text);
+                    user.Weight = Convert.ToInt32(TbWaga.Text);
+                    user.Height = Convert.ToInt32(TbWzrost.Text);
+                    user.BloodType = CbGrupaKrwi.Text;
 
                     //var data = entities.Role;
                     //foreach (var item in data)
@@ -106,10 +129,25 @@ namespace CJB_Medical
                     //string serializedUser = XMLSerializer.Serialize(user);
                     //serializedUser = serializedUser.Replace("<", "zxc").Replace(">", "cxz");
 
-                   // WebService.service.AddUser(serializedUser);
-
-                    Role role = entities.Role.Single(a => a.Id == 1);
+                    // WebService.service.AddUser(serializedUser);
+                    Role role = new Role();
+                    Specjalizations specjalizations = new Specjalizations();
+                    if (CbLekarz.Checked)
+                    {
+                        role = entities.Role.Single(a => a.Id == 2);
+                        foreach (string item in checkedListBox1.CheckedItems)
+                        {
+                            specjalizations = entities.Specjalizations.Single(a => a.Name.Equals(item));
+                            user.Specjalizations.Add(specjalizations);
+                        }
+                        user.Room = CbGabinet.Text;
+                    }
+                    else
+                    {
+                        role = entities.Role.Single(a => a.Id == 1);
+                    }
                     role.User.Add(user);
+                    address.User.Add(user);
                     entities.User.Add(user);
                     entities.SaveChanges();
 
@@ -133,11 +171,16 @@ namespace CJB_Medical
             bool validEmail = ValidateEmail();
             bool validHaslo = ValidateHaslo();
             bool validHasloValid = ValidateHasloValid();
+            bool validWojewodztwo = ValidateWojewodztwo();
+            bool validWiek = ValidateWiek();
+            bool validWzrost = ValidateWzrost();
+            bool validWaga = ValidateWaga();
+            bool validGrupaKrwi = ValidateGrupaKrwi();
 
 
             if (validNazwisko && validImie && validPesel && validUlica && validDom && validLokal 
-                && validMiejscowosc && validKodPocztowy && validTelefon && validEmail && validHaslo 
-                && validHasloValid) { }
+                && validMiejscowosc && validKodPocztowy && validWojewodztwo && validTelefon && validEmail && validHaslo 
+                && validHasloValid && validWiek && validWaga && validWzrost && validGrupaKrwi) { }
             else
             {
                 ret = false;
@@ -150,14 +193,11 @@ namespace CJB_Medical
         {
             if (CbLekarz.Checked == true)
             {
-                label15.Visible = true;
-                TbKey.Visible = true;
+                groupBox2.Visible = true;
             }
             else
             {
-                label15.Visible = false;
-                TbKey.Visible = false;
-
+                groupBox2.Visible = false;
             }
         }
 
@@ -329,6 +369,26 @@ namespace CJB_Medical
             return status;
         }
 
+        private void CbWojewodztwo_Validating(object sender, CancelEventArgs e)
+        {
+            ValidateWojewodztwo();
+        }
+
+        private bool ValidateWojewodztwo()
+        {
+            bool status = true;
+            if (CbWojewodztwo.Text.Equals(""))
+            {
+                errorProvider1.SetError(CbWojewodztwo, "Wybierz województwo z listy");
+                status = false;
+            }
+            else
+            {
+                errorProvider1.SetError(CbWojewodztwo, "");
+            }
+            return status;
+        }
+
         private void TbTelefon_Validating(object sender, CancelEventArgs e)
         {
             ValidateTelefon();
@@ -411,10 +471,9 @@ namespace CJB_Medical
 
         private void TbKey_Validating(object sender, CancelEventArgs e)
         {
-            if (CbLekarz.Checked == true)
+            if (CbLekarz.Checked)
             {
-
-            ValidateKey();
+                ValidateKey();
             }
         }
 
@@ -433,12 +492,123 @@ namespace CJB_Medical
             return status;
         }
 
+
+
         private void TbTelefon_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
             }
+        }
+
+        private void TbWiek_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void TbWzrost_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void TbWaga_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void TbWiek_Validating(object sender, CancelEventArgs e)
+        {
+            ValidateWiek();
+        }
+
+        private bool ValidateWiek()
+        {
+            bool status = true;
+            if (TbWiek.Text.Equals(""))
+            {
+                errorProvider1.SetError(TbWiek, "Wpisz poprawny wiek");
+                status = false;
+            }
+            else
+            {
+                errorProvider1.SetError(TbWiek, "");
+            }
+            return status;
+        }
+
+        private void TbWzrost_Validating(object sender, CancelEventArgs e)
+        {
+            ValidateWzrost();
+        }
+
+        private bool ValidateWzrost()
+        {
+            bool status = true;
+            if (TbWzrost.Text.Equals(""))
+            {
+                errorProvider1.SetError(TbWzrost, "Wpisz poprawny wzrost w cm");
+                status = false;
+            }
+            else
+            {
+                errorProvider1.SetError(TbWzrost, "");
+            }
+            return status;
+        }
+
+        private void TbWaga_Validating(object sender, CancelEventArgs e)
+        {
+            ValidateWaga();
+        }
+
+        private bool ValidateWaga()
+        {
+            bool status = true;
+            if (TbWaga.Text.Equals(""))
+            {
+                errorProvider1.SetError(TbWaga, "Wpisz poprawną masę ciała w kg");
+                status = false;
+            }
+            else
+            {
+                errorProvider1.SetError(TbWaga, "");
+            }
+            return status;
+        }
+
+        private void CbGrupaKrwi_Validating(object sender, CancelEventArgs e)
+        {
+            ValidateGrupaKrwi();
+        }
+
+        private bool ValidateGrupaKrwi()
+        {
+            bool status = true;
+            if (CbGrupaKrwi.Text.Equals(""))
+            {
+                errorProvider1.SetError(CbGrupaKrwi, "Wybierz grupę krwi z listy");
+                status = false;
+            }
+            else
+            {
+                errorProvider1.SetError(CbGrupaKrwi, "");
+            }
+            return status;
+        }
+
+        private void Register_Load(object sender, EventArgs e)
+        {
+           
         }
     }
 }

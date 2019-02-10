@@ -12,17 +12,11 @@ namespace CJB_Medical
     using System;
     using System.Collections.Generic;
     
-    public partial class Visit
+    public partial class Specjalizations
     {
         public int Id { get; set; }
-        public int Schedule_Id { get; set; }
-        public int User_Id { get; set; }
-        public string Diagnosis { get; set; }
-        public string Description { get; set; }
-        public string Recommendations { get; set; }
+        public string Name { get; set; }
     
-        public virtual Schedule Schedule { get; set; }
         public virtual User User { get; set; }
-        public virtual Attachment Attachment { get; set; }
     }
 }

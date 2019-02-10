@@ -12,23 +12,22 @@ namespace CJB_Medical
     using System;
     using System.Collections.Generic;
     
-    public partial class Address
+    public partial class Schedule
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Address()
+        public Schedule()
         {
-            this.User = new HashSet<User>();
+            this.Visit = new HashSet<Visit>();
         }
     
         public int Id { get; set; }
-        public string Province { get; set; }
-        public string City { get; set; }
-        public string Postcode { get; set; }
-        public string Street { get; set; }
-        public string House { get; set; }
-        public string Flat { get; set; }
+        public int Doctor_Id { get; set; }
+        public System.DateTime Date { get; set; }
+        public System.TimeSpan From { get; set; }
+        public System.TimeSpan To { get; set; }
     
+        public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> User { get; set; }
+        public virtual ICollection<Visit> Visit { get; set; }
     }
 }
