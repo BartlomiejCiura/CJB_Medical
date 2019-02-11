@@ -15,6 +15,10 @@ namespace CJB_Medical
         public Login_Form()
         {
             InitializeComponent();
+#if DEBUG
+            TBLogin.Text = "00000000000";
+            TbPassword.Text = "administrator";
+#endif
         }
 
         private void TBLogin_KeyPress(object sender, KeyPressEventArgs e)
@@ -23,6 +27,9 @@ namespace CJB_Medical
             {
                 e.Handled = true;
             }
+
+
+
         }
 
         private void BtnRegister_Click(object sender, EventArgs e)
@@ -53,9 +60,49 @@ namespace CJB_Medical
 
         private void BtnLogin_Click(object sender, EventArgs e)
         {
-            Main main = new Main();
-            main.Show();
-            this.Hide();
+            Cursor.Current = Cursors.WaitCursor;
+            using (CJBDatabaseEntities entities = new CJBDatabaseEntities())
+            {
+                User userCzyInstnieje = new User();
+                userCzyInstnieje = entities.User.FirstOrDefault(p => p.Pesel.Equals(TBLogin.Text));
+                bool exist = userCzyInstnieje != null ? true : false;
+                if (exist)
+                {
+                    string pass = Register.PassBuild(TbPassword.Text, userCzyInstnieje.Password_Salt);
+
+                    if (userCzyInstnieje.Password.Equals(pass))
+                    {
+                        if (userCzyInstnieje.Role.Id == 3)
+                        {
+                            PanelAdmina panelAdmina = new PanelAdmina();
+                            panelAdmina.Text = "ADMINISTRATOR: " + userCzyInstnieje.Name + " " + userCzyInstnieje.Surname;
+                            panelAdmina.Show();
+                            Hide();
+                            Cursor.Current = Cursors.Default;
+                            return;
+                        }
+
+                        Main main = new Main();
+                        main.Text = "PANEL GŁÓWNY - " + userCzyInstnieje.Name + " " + userCzyInstnieje.Surname; 
+                        main.Show();
+                        Hide();
+                        Cursor.Current = Cursors.Default;
+                        return;
+                    }
+                    else
+                    {
+                        Cursor.Current = Cursors.Default;
+                        MessageBox.Show("Login Lub hasło są nieprawidłowe", "BŁĄD", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                        return;
+                    }
+                }
+                else
+                {
+                    Cursor.Current = Cursors.Default;
+                    MessageBox.Show("Użytkownik o takim loginie nie istnieje. Zarejestruj nowe konto", "UWAGA", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                    return;
+                }
+            } 
         }
     }
 }

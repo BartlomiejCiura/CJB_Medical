@@ -31,9 +31,9 @@ namespace CJB_Medical
             Hide();
         }
 
-        private static Random random = new Random();
         public static string RandomString(int length)
         {
+            Random random = new Random();
             const string CHARS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             return new string(Enumerable.Repeat(CHARS, length).Select(s => s[random.Next(s.Length)]).ToArray());
         }
@@ -65,6 +65,15 @@ namespace CJB_Medical
             {
                 using (CJBDatabaseEntities entities = new CJBDatabaseEntities())
                 {
+                    User userCzyInstnieje = new User();
+                    userCzyInstnieje = entities.User.FirstOrDefault(p => p.Pesel.Equals(TbPesel.Text));
+                    bool exist = userCzyInstnieje != null ? true : false;
+                    if (exist)
+                    {
+                        MessageBox.Show("Użytkownik o takim numeru pesel już ma założone konto. Jeśli nie pamiętasz hasła skontaktuj się z administratorem.");
+                        return;
+                    }
+
                     Address address = new Address();
                     address.Street = TbUlica.Text;
                     address.House = TbDom.Text;
@@ -76,22 +85,10 @@ namespace CJB_Medical
                     entities.Address.Add(address);
                     entities.SaveChanges();
 
-                    
-
                     User user = new User();
-
 
                     user.Name = TbImie.Text;
                     user.Surname = TbNazwisko.Text;
-
-                    User userCzyInstnieje = new User();
-                    userCzyInstnieje = entities.User.FirstOrDefault(p => p.Pesel.Equals(TbPesel.Text));
-                    bool exist = userCzyInstnieje != null ? true : false;
-                    if (exist)
-                    {
-                        MessageBox.Show("Użytkownik o takim numeru pesel już ma założone konto. Jeśli nie pamiętasz hasła skontaktuj się z administratorem.");
-                        return;
-                    }
                     user.Pesel = TbPesel.Text;
                     bool man = radioButton1.Checked;
                     user.Gender = man ? "Meżczyzna" : "Kobieta";
