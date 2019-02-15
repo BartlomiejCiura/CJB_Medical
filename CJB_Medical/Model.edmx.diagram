@@ -4,22 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4e1a850d21184c999f68cf55a2d02189" Name="Diagram1">
+      <Diagram DiagramId="99c6f12fdac64ab8beb0f28efb46d898" Name="Diagram1">
         <EntityTypeShape EntityType="CJBDatabaseModel.Address" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CJBDatabaseModel.Attachment" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="CJBDatabaseModel.Role" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CJBDatabaseModel.Schedule" Width="1.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CJBDatabaseModel.Specjalizations" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
         <EntityTypeShape EntityType="CJBDatabaseModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="6.875" IsExpanded="true" />
         <EntityTypeShape EntityType="CJBDatabaseModel.User" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CJBDatabaseModel.Visit" Width="1.5" PointX="7.5" PointY="3.375" IsExpanded="true" />
-        <AssociationConnector Association="CJBDatabaseModel.FK_Schedule_User" ManuallyRouted="false" />
-        <AssociationConnector Association="CJBDatabaseModel.FK_Visit_Schedule" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CJBDatabaseModel.Visit" Width="1.5" PointX="7.5" PointY="3.5" IsExpanded="true" />
         <AssociationConnector Association="CJBDatabaseModel.FK_Visit_User" ManuallyRouted="false" />
         <AssociationConnector Association="CJBDatabaseModel.UserAddress" ManuallyRouted="false" />
         <AssociationConnector Association="CJBDatabaseModel.UserRole" ManuallyRouted="false" />
+        <AssociationConnector Association="CJBDatabaseModel.UserSpecjalization" ManuallyRouted="false" />
         <AssociationConnector Association="CJBDatabaseModel.Visit_Attachment" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="CJBDatabaseModel.Specjalizations" Width="1.5" PointX="0.75" PointY="8.875" />
-        <AssociationConnector Association="CJBDatabaseModel.UserSpecjalization" />
+        <EntityTypeShape EntityType="CJBDatabaseModel.Schedule" Width="1.5" PointX="7.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

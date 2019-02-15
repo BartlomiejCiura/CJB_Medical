@@ -12,12 +12,13 @@ namespace CJB_Medical
 {
     public partial class Login_Form : Form
     {
+        User userLogin;
         public Login_Form()
         {
             InitializeComponent();
 #if DEBUG
-            TBLogin.Text = "00000000000";
-            TbPassword.Text = "administrator";
+            TBLogin.Text = "21111111111";
+            TbPassword.Text = "11111111";
 #endif
         }
 
@@ -27,9 +28,6 @@ namespace CJB_Medical
             {
                 e.Handled = true;
             }
-
-
-
         }
 
         private void BtnRegister_Click(object sender, EventArgs e)
@@ -37,11 +35,6 @@ namespace CJB_Medical
             Register register = new Register();
             register.Show();
             Hide();
-           
-                //User user = new User();
-                //user.Registration_Date = DateTime.Now();
-                //user.Pesel = tb
-                //entities.User.Add();
             
         }
 
@@ -63,19 +56,20 @@ namespace CJB_Medical
             Cursor.Current = Cursors.WaitCursor;
             using (CJBDatabaseEntities entities = new CJBDatabaseEntities())
             {
-                User userCzyInstnieje = new User();
-                userCzyInstnieje = entities.User.FirstOrDefault(p => p.Pesel.Equals(TBLogin.Text));
-                bool exist = userCzyInstnieje != null ? true : false;
+                userLogin = entities.User.FirstOrDefault(p => p.Pesel.Equals(TBLogin.Text));
+                
+                bool exist = userLogin != null ? true : false;
                 if (exist)
                 {
-                    string pass = Register.PassBuild(TbPassword.Text, userCzyInstnieje.Password_Salt);
+                    string pass = Register.PassBuild(TbPassword.Text, userLogin.Password_Salt);
 
-                    if (userCzyInstnieje.Password.Equals(pass))
+                    if (userLogin.Password.Equals(pass))
                     {
-                        if (userCzyInstnieje.Role.Id == 3)
+                        if (userLogin.Role.Id == 3)
                         {
                             PanelAdmina panelAdmina = new PanelAdmina();
-                            panelAdmina.Text = "ADMINISTRATOR: " + userCzyInstnieje.Name + " " + userCzyInstnieje.Surname;
+                            panelAdmina.Text = "ADMINISTRATOR: " + userLogin.Name + " " + userLogin.Surname;
+                            panelAdmina.PassUser(userLogin);
                             panelAdmina.Show();
                             Hide();
                             Cursor.Current = Cursors.Default;
@@ -83,7 +77,8 @@ namespace CJB_Medical
                         }
 
                         Main main = new Main();
-                        main.Text = "PANEL GŁÓWNY - " + userCzyInstnieje.Name + " " + userCzyInstnieje.Surname; 
+                        main.Text = "PANEL GŁÓWNY - " + userLogin.Name + " " + userLogin.Surname; 
+                        main.PassUser(userLogin);
                         main.Show();
                         Hide();
                         Cursor.Current = Cursors.Default;

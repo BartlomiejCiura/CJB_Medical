@@ -30,11 +30,11 @@ namespace CJB_Medical
         public virtual DbSet<Address> Address { get; set; }
         public virtual DbSet<Attachment> Attachment { get; set; }
         public virtual DbSet<Role> Role { get; set; }
-        public virtual DbSet<Schedule> Schedule { get; set; }
+        public virtual DbSet<Specjalizations> Specjalizations { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<Visit> Visit { get; set; }
-        public virtual DbSet<Specjalizations> Specjalizations { get; set; }
+        public virtual DbSet<Schedule> Schedule { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

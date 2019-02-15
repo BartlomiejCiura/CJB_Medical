@@ -39,8 +39,8 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Doctor_Id" Type="int" Nullable="false" />
           <Property Name="Date" Type="datetime" Nullable="false" />
-          <Property Name="From" Type="time" Precision="7" Nullable="false" />
-          <Property Name="To" Type="time" Precision="7" Nullable="false" />
+          <Property Name="From" Type="datetime" Nullable="false" />
+          <Property Name="To" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Specjalizations">
           <Key>
@@ -106,8 +106,10 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Schedule_Id" Type="int" Nullable="false" />
-          <Property Name="User_Id" Type="int" Nullable="false" />
+          <Property Name="From" Type="datetime" Nullable="false" />
+          <Property Name="To" Type="datetime" Nullable="false" />
+          <Property Name="Doctor_Id" Type="int" Nullable="false" />
+          <Property Name="User_Id" Type="int" />
           <Property Name="Diagnosis" Type="nvarchar(max)" />
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="Recommendations" Type="nvarchar(max)" />
@@ -120,7 +122,9 @@
           <Property Name="Attachment_Id" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Examination_Attachment_Attachment">
-          <End Role="Attachment" Type="Self.Attachment" Multiplicity="1" />
+          <End Role="Attachment" Type="Self.Attachment" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Visit_Attachment" Type="Self.Visit_Attachment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Attachment">
@@ -128,18 +132,6 @@
             </Principal>
             <Dependent Role="Visit_Attachment">
               <PropertyRef Name="Attachment_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Schedule_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Schedule">
-              <PropertyRef Name="Doctor_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -208,7 +200,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UserSpecjalization_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="UserSpecjalization" Type="Self.UserSpecjalization" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
@@ -231,20 +225,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Visit_Schedule">
-          <End Role="Schedule" Type="Self.Schedule" Multiplicity="1" />
-          <End Role="Visit" Type="Self.Visit" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Schedule">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Visit">
-              <PropertyRef Name="Schedule_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Visit_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="Visit" Type="Self.Visit" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
@@ -303,10 +285,6 @@
             <End Role="Attachment" EntitySet="Attachment" />
             <End Role="Visit_Attachment" EntitySet="Visit_Attachment" />
           </AssociationSet>
-          <AssociationSet Name="FK_Schedule_User" Association="Self.FK_Schedule_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="Schedule" EntitySet="Schedule" />
-          </AssociationSet>
           <AssociationSet Name="FK_UserAddress_Address" Association="Self.FK_UserAddress_Address">
             <End Role="Address" EntitySet="Address" />
             <End Role="UserAddress" EntitySet="UserAddress" />
@@ -335,10 +313,6 @@
             <End Role="Visit" EntitySet="Visit" />
             <End Role="Visit_Attachment" EntitySet="Visit_Attachment" />
           </AssociationSet>
-          <AssociationSet Name="FK_Visit_Schedule" Association="Self.FK_Visit_Schedule">
-            <End Role="Schedule" EntitySet="Schedule" />
-            <End Role="Visit" EntitySet="Visit" />
-          </AssociationSet>
           <AssociationSet Name="FK_Visit_User" Association="Self.FK_Visit_User">
             <End Role="User" EntitySet="User" />
             <End Role="Visit" EntitySet="Visit" />
@@ -357,8 +331,8 @@
           <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Postcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Street" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="House" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Flat" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="House" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Flat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="User" Relationship="Self.UserAddress" FromRole="Address" ToRole="User" />
         </EntityType>
         <EntityType Name="Attachment">
@@ -378,17 +352,13 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="User" Relationship="Self.UserRole" FromRole="Role" ToRole="User" />
         </EntityType>
-        <EntityType Name="Schedule">
+        <EntityType Name="Specjalizations">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Doctor_Id" Type="Int32" Nullable="false" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="From" Type="Time" Nullable="false" Precision="7" />
-          <Property Name="To" Type="Time" Nullable="false" Precision="7" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Schedule_User" FromRole="Schedule" ToRole="User" />
-          <NavigationProperty Name="Visit" Relationship="Self.FK_Visit_Schedule" FromRole="Schedule" ToRole="Visit" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.UserSpecjalization" FromRole="Specjalizations" ToRole="User" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -419,62 +389,29 @@
           <Property Name="Height" Type="Int32" />
           <Property Name="Weight" Type="Int32" />
           <Property Name="Age" Type="Int32" />
-          <Property Name="Room" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="Schedule" Relationship="Self.FK_Schedule_User" FromRole="User" ToRole="Schedule" />
+          <Property Name="Room" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Visit" Relationship="Self.FK_Visit_User" FromRole="User" ToRole="Visit" />
           <NavigationProperty Name="Address" Relationship="Self.UserAddress" FromRole="User" ToRole="Address" />
           <NavigationProperty Name="Role" Relationship="Self.UserRole" FromRole="User" ToRole="Role" />
-          <NavigationProperty Name="Specjalizations" Relationship="CJBDatabaseModel.UserSpecjalization" FromRole="User" ToRole="Specjalizations" />
+          <NavigationProperty Name="Specjalizations" Relationship="Self.UserSpecjalization" FromRole="User" ToRole="Specjalizations" />
         </EntityType>
         <EntityType Name="Visit">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Schedule_Id" Type="Int32" Nullable="false" />
-          <Property Name="User_Id" Type="Int32" Nullable="false" />
           <Property Name="Diagnosis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Recommendations" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Schedule" Relationship="Self.FK_Visit_Schedule" FromRole="Visit" ToRole="Schedule" />
           <NavigationProperty Name="User" Relationship="Self.FK_Visit_User" FromRole="Visit" ToRole="User" />
           <NavigationProperty Name="Attachment" Relationship="Self.Visit_Attachment" FromRole="Visit" ToRole="Attachment" />
+          <Property Name="From" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="To" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Doctor_Id" Type="Int32" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Schedule_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Schedule">
-              <PropertyRef Name="Doctor_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Visit_Schedule">
-          <End Role="Schedule" Type="Self.Schedule" Multiplicity="1" />
-          <End Role="Visit" Type="Self.Visit" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Schedule">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Visit">
-              <PropertyRef Name="Schedule_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Visit_User">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="Visit" Type="Self.Visit" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Visit">
-              <PropertyRef Name="User_Id" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="UserAddress">
           <End Role="Address" Type="Self.Address" Multiplicity="0..1" />
@@ -484,6 +421,10 @@
           <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
         </Association>
+        <Association Name="UserSpecjalization">
+          <End Role="Specjalizations" Type="Self.Specjalizations" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+        </Association>
         <Association Name="Visit_Attachment">
           <End Role="Attachment" Type="Self.Attachment" Multiplicity="0..1" />
           <End Role="Visit" Type="Self.Visit" Multiplicity="*" />
@@ -492,18 +433,10 @@
           <EntitySet Name="Address" EntityType="Self.Address" />
           <EntitySet Name="Attachment" EntityType="Self.Attachment" />
           <EntitySet Name="Role" EntityType="Self.Role" />
-          <EntitySet Name="Schedule" EntityType="Self.Schedule" />
+          <EntitySet Name="Specjalizations" EntityType="Self.Specjalizations" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="User" EntityType="Self.User" />
           <EntitySet Name="Visit" EntityType="Self.Visit" />
-          <AssociationSet Name="FK_Schedule_User" Association="Self.FK_Schedule_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="Schedule" EntitySet="Schedule" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Visit_Schedule" Association="Self.FK_Visit_Schedule">
-            <End Role="Schedule" EntitySet="Schedule" />
-            <End Role="Visit" EntitySet="Visit" />
-          </AssociationSet>
           <AssociationSet Name="FK_Visit_User" Association="Self.FK_Visit_User">
             <End Role="User" EntitySet="User" />
             <End Role="Visit" EntitySet="Visit" />
@@ -514,6 +447,10 @@
           </AssociationSet>
           <AssociationSet Name="UserRole" Association="Self.UserRole">
             <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="UserSpecjalization" Association="Self.UserSpecjalization">
+            <End Role="Specjalizations" EntitySet="Specjalizations" />
             <End Role="User" EntitySet="User" />
           </AssociationSet>
           <AssociationSet Name="Visit_Attachment" Association="Self.Visit_Attachment">
@@ -550,11 +487,7 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
-          <EntitySet Name="Specjalizations" EntityType="CJBDatabaseModel.Specjalizations" />
-          <AssociationSet Name="UserSpecjalization" Association="CJBDatabaseModel.UserSpecjalization">
-            <End Role="Specjalizations" EntitySet="Specjalizations" />
-            <End Role="User" EntitySet="User" />
-          </AssociationSet>
+          <EntitySet Name="Schedule" EntityType="CJBDatabaseModel.Schedule" />
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -567,18 +500,16 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
-        <EntityType Name="Specjalizations">
+        <EntityType Name="Schedule">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="User" Relationship="CJBDatabaseModel.UserSpecjalization" FromRole="Specjalizations" ToRole="User" />
+          <Property Name="Doctor_Id" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="From" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="To" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
-        <Association Name="UserSpecjalization">
-          <End Type="CJBDatabaseModel.Specjalizations" Role="Specjalizations" Multiplicity="*" />
-          <End Type="CJBDatabaseModel.User" Role="User" Multiplicity="0..1" />
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -615,14 +546,11 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Schedule">
-            <EntityTypeMapping TypeName="CJBDatabaseModel.Schedule">
-              <MappingFragment StoreEntitySet="Schedule">
+          <EntitySetMapping Name="Specjalizations">
+            <EntityTypeMapping TypeName="CJBDatabaseModel.Specjalizations">
+              <MappingFragment StoreEntitySet="Specjalizations">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Doctor_Id" ColumnName="Doctor_Id" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="From" ColumnName="From" />
-                <ScalarProperty Name="To" ColumnName="To" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -662,15 +590,24 @@
           <EntitySetMapping Name="Visit">
             <EntityTypeMapping TypeName="CJBDatabaseModel.Visit">
               <MappingFragment StoreEntitySet="Visit">
+                <ScalarProperty Name="Doctor_Id" ColumnName="Doctor_Id" />
+                <ScalarProperty Name="To" ColumnName="To" />
+                <ScalarProperty Name="From" ColumnName="From" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Schedule_Id" ColumnName="Schedule_Id" />
-                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
                 <ScalarProperty Name="Diagnosis" ColumnName="Diagnosis" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Recommendations" ColumnName="Recommendations" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="FK_Visit_User" TypeName="CJBDatabaseModel.FK_Visit_User" StoreEntitySet="Visit">
+            <EndProperty Name="User">
+              <ScalarProperty Name="Id" ColumnName="User_Id" />
+            </EndProperty>
+            <EndProperty Name="Visit">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
           <AssociationSetMapping Name="UserAddress" TypeName="CJBDatabaseModel.UserAddress" StoreEntitySet="UserAddress">
             <EndProperty Name="Address">
               <ScalarProperty Name="Id" ColumnName="Address_ID" />
@@ -682,6 +619,14 @@
           <AssociationSetMapping Name="UserRole" TypeName="CJBDatabaseModel.UserRole" StoreEntitySet="UserRole">
             <EndProperty Name="Role">
               <ScalarProperty Name="Id" ColumnName="Role_Id" />
+            </EndProperty>
+            <EndProperty Name="User">
+              <ScalarProperty Name="Id" ColumnName="User_Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="UserSpecjalization" TypeName="CJBDatabaseModel.UserSpecjalization" StoreEntitySet="UserSpecjalization">
+            <EndProperty Name="Specjalizations">
+              <ScalarProperty Name="Id" ColumnName="Specjalization_Id" />
             </EndProperty>
             <EndProperty Name="User">
               <ScalarProperty Name="Id" ColumnName="User_Id" />
@@ -719,24 +664,18 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="CJBDatabaseModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="CJBDatabaseModel.Store.sp_upgraddiagrams" />
-          <EntitySetMapping Name="Specjalizations">
-            <EntityTypeMapping TypeName="CJBDatabaseModel.Specjalizations">
-              <MappingFragment StoreEntitySet="Specjalizations">
-                <ScalarProperty Name="Name" ColumnName="Name" />
+          <EntitySetMapping Name="Schedule">
+            <EntityTypeMapping TypeName="CJBDatabaseModel.Schedule">
+              <MappingFragment StoreEntitySet="Schedule">
+                <ScalarProperty Name="To" ColumnName="To" />
+                <ScalarProperty Name="From" ColumnName="From" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Doctor_Id" ColumnName="Doctor_Id" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="UserSpecjalization" TypeName="CJBDatabaseModel.UserSpecjalization" StoreEntitySet="UserSpecjalization">
-            <EndProperty Name="User">
-              <ScalarProperty Name="Id" ColumnName="User_Id" />
-            </EndProperty>
-            <EndProperty Name="Specjalizations">
-              <ScalarProperty Name="Id" ColumnName="Specjalization_Id" />
-            </EndProperty>
-            <Condition ColumnName="User_Id" IsNull="false" />
-          </AssociationSetMapping>
-          </EntityContainerMapping>
+        </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -751,7 +690,7 @@
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>

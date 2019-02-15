@@ -499,7 +499,7 @@
             this.TbLokal.Name = "TbLokal";
             this.TbLokal.Size = new System.Drawing.Size(310, 20);
             this.TbLokal.TabIndex = 5;
-            this.TbLokal.Validating += new System.ComponentModel.CancelEventHandler(this.TbLokal_Validating);
+            //this.TbLokal.Validating += new System.ComponentModel.CancelEventHandler(this.TbLokal_Validating);
             // 
             // TbDom
             // 

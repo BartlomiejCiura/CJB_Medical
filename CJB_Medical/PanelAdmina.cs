@@ -12,6 +12,8 @@ namespace CJB_Medical
 {
     public partial class PanelAdmina : Form
     {
+
+        User user;
         DataTable dataTablePacjent = new DataTable();
         DataTable dataTableLekarz = new DataTable();
 
@@ -27,9 +29,11 @@ namespace CJB_Medical
             dataTableLekarz.Columns.Add("PESEL");
             dataTableLekarz.Columns.Add("IMIĘ");
             dataTableLekarz.Columns.Add("NAZWISKO");
+        }
 
-            LoadData();
-
+        public void PassUser(User userLogin)
+        {
+            user = userLogin;
         }
 
         private void LoadData()
@@ -73,34 +77,83 @@ namespace CJB_Medical
 
         }
 
+        
+
         private void PanelAdmina_Load(object sender, EventArgs e)
         {
+            LoadData();
             dgvPacjenci.DataSource = dataTablePacjent;
             dgvLekarze.DataSource = dataTableLekarz;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (tabControl1.SelectedTab.Equals(tabPage1))
+            using (CJBDatabaseEntities entities = new CJBDatabaseEntities())
             {
-                //pacjent
-                using (CJBDatabaseEntities entities = new CJBDatabaseEntities())
+                if (tabControl1.SelectedTab.Equals(tabPage1))
                 {
+                    //pacjent
+
                     int id = Convert.ToInt32(dgvPacjenci.Rows[dgvPacjenci.CurrentCell.RowIndex].Cells[0].Value);
                     User us = entities.User.FirstOrDefault(u => u.Id == id);
                     entities.User.Remove(us);
                     entities.SaveChanges();
                     LoadData();
+
+                    MessageBox.Show("Pacjent usunięty", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                 }
-                
-
-
-
-                MessageBox.Show("pac");
+                else
+                {
+                    //lekarz
+                   
+                    int id = Convert.ToInt32(dgvLekarze.Rows[dgvLekarze.CurrentCell.RowIndex].Cells[0].Value);
+                    User us = entities.User.FirstOrDefault(u => u.Id == id);
+                    entities.User.Remove(us);
+                  
+                    entities.SaveChanges();
+                    LoadData();
+                   
+                    MessageBox.Show("Lekarz usunięty", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                }
             }
-            else
+        }
+
+        private void btnPasswordReset_Click(object sender, EventArgs e)
+        {
+            using (CJBDatabaseEntities entities = new CJBDatabaseEntities())
             {
-                //lekarz
+                if (tabControl1.SelectedTab.Equals(tabPage1))
+                {
+                    //pacjent
+
+                    int id = Convert.ToInt32(dgvPacjenci.Rows[dgvPacjenci.CurrentCell.RowIndex].Cells[0].Value);
+                    User us = entities.User.FirstOrDefault(u => u.Id == id);
+                    string newPass = Register.RandomString(8);
+                    //string newPass = "11111111";
+                    us.Password = Register.PassBuild(newPass, us.Password_Salt);
+                    Clipboard.SetText(newPass);
+                    entities.SaveChanges();
+                    LoadData();
+
+                    MessageBox.Show("Hasło zresetowane! Nowe hasło:\n" + newPass, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                }
+                else
+                {
+                    //lekarz
+
+                    int id = Convert.ToInt32(dgvLekarze.Rows[dgvLekarze.CurrentCell.RowIndex].Cells[0].Value);
+                    User us = entities.User.FirstOrDefault(u => u.Id == id);
+
+                    string newPass = Register.RandomString(8);
+                    //string newPass = "11111111";
+                    us.Password = Register.PassBuild(newPass, us.Password_Salt);
+                    Clipboard.SetText(newPass);
+
+                    entities.SaveChanges();
+                    LoadData();
+
+                    MessageBox.Show("Hasło zresetowane! Nowe hasło:\n" + newPass, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                }
             }
         }
     }

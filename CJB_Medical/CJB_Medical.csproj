@@ -150,8 +150,6 @@
     <Compile Include="Visit.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="WebService.cs" />
-    <Compile Include="XMLSerializer.cs" />
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>

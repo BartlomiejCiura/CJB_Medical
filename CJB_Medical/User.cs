@@ -17,7 +17,6 @@ namespace CJB_Medical
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
-            this.Schedule = new HashSet<Schedule>();
             this.Visit = new HashSet<Visit>();
             this.Specjalizations = new HashSet<Specjalizations>();
         }
@@ -39,8 +38,6 @@ namespace CJB_Medical
         public Nullable<int> Age { get; set; }
         public string Room { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Schedule> Schedule { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Visit> Visit { get; set; }
         public virtual Address Address { get; set; }

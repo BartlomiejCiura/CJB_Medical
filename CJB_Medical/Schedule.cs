@@ -14,20 +14,10 @@ namespace CJB_Medical
     
     public partial class Schedule
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Schedule()
-        {
-            this.Visit = new HashSet<Visit>();
-        }
-    
         public int Id { get; set; }
         public int Doctor_Id { get; set; }
         public System.DateTime Date { get; set; }
-        public System.TimeSpan From { get; set; }
-        public System.TimeSpan To { get; set; }
-    
-        public virtual User User { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Visit> Visit { get; set; }
+        public System.DateTime From { get; set; }
+        public System.DateTime To { get; set; }
     }
 }

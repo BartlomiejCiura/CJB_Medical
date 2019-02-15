@@ -49,7 +49,7 @@ namespace CJB_Medical
 
         private void BtnRegister_Click(object sender, EventArgs e)
         {
-
+            Cursor.Current = Cursors.WaitCursor;
             //using (CJBDatabaseEntities ent = new CJBDatabaseEntities())
             //{
 
@@ -148,7 +148,12 @@ namespace CJB_Medical
                     entities.User.Add(user);
                     entities.SaveChanges();
 
+                    Cursor.Current = Cursors.Default;
                     MessageBox.Show("Uztykownik dodany");
+
+                    Login_Form login_Form = new Login_Form();
+                    login_Form.Show();
+                    Hide();
                 }
             }
         }
@@ -161,7 +166,7 @@ namespace CJB_Medical
             bool validPesel = ValidatePesel();
             bool validUlica = ValidateUlica();
             bool validDom = ValidateDom();
-            bool validLokal = ValidateLokal();
+           // bool validLokal = ValidateLokal();
             bool validMiejscowosc = ValidateMiejscowosc();
             bool validKodPocztowy = ValidateKodPocztowy();
             bool validTelefon = ValidateTelefon();
@@ -175,7 +180,7 @@ namespace CJB_Medical
             bool validGrupaKrwi = ValidateGrupaKrwi();
 
 
-            if (validNazwisko && validImie && validPesel && validUlica && validDom && validLokal 
+            if (validNazwisko && validImie && validPesel && validUlica && validDom// && //validLokal 
                 && validMiejscowosc && validKodPocztowy && validWojewodztwo && validTelefon && validEmail && validHaslo 
                 && validHasloValid && validWiek && validWaga && validWzrost && validGrupaKrwi) { }
             else
@@ -306,25 +311,25 @@ namespace CJB_Medical
             return status;
         }
 
-        private void TbLokal_Validating(object sender, CancelEventArgs e)
-        {
-            ValidateLokal();
-        }
+        //private void TbLokal_Validating(object sender, CancelEventArgs e)
+        //{
+        //    ValidateLokal();
+        //}
 
-        private bool ValidateLokal()
-        {
-            bool status = true;
-            if (TbLokal.Text.Equals(""))
-            {
-                errorProvider1.SetError(TbLokal, "Wprowadź poprawny numer lokalu");
-                status = false;
-            }
-            else
-            {
-                errorProvider1.SetError(TbLokal, "");
-            }
-            return status;
-        }
+        //private bool ValidateLokal()
+        //{
+        //    bool status = true;
+        //    if (TbLokal.Text.Equals(""))
+        //    {
+        //        errorProvider1.SetError(TbLokal, "Wprowadź poprawny numer lokalu");
+        //        status = false;
+        //    }
+        //    else
+        //    {
+        //        errorProvider1.SetError(TbLokal, "");
+        //    }
+        //    return status;
+        //}
 
         private void TbMiejscowosc_Validating(object sender, CancelEventArgs e)
         {

@@ -15,13 +15,13 @@ namespace CJB_Medical
     public partial class Visit
     {
         public int Id { get; set; }
-        public int Schedule_Id { get; set; }
-        public int User_Id { get; set; }
         public string Diagnosis { get; set; }
         public string Description { get; set; }
         public string Recommendations { get; set; }
+        public System.DateTime From { get; set; }
+        public System.DateTime To { get; set; }
+        public int Doctor_Id { get; set; }
     
-        public virtual Schedule Schedule { get; set; }
         public virtual User User { get; set; }
         public virtual Attachment Attachment { get; set; }
     }
