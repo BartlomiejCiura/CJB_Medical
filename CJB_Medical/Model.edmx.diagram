@@ -12,7 +12,7 @@
         <EntityTypeShape EntityType="CJBDatabaseModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="6.875" IsExpanded="true" />
         <EntityTypeShape EntityType="CJBDatabaseModel.User" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
         <EntityTypeShape EntityType="CJBDatabaseModel.Visit" Width="1.5" PointX="7.5" PointY="3.5" IsExpanded="true" />
-        <AssociationConnector Association="CJBDatabaseModel.FK_Visit_User" ManuallyRouted="false" />
+        <AssociationConnector ManuallyRouted="false" Association="CJBDatabaseModel.FK_Visit_User" />
         <AssociationConnector Association="CJBDatabaseModel.UserAddress" ManuallyRouted="false" />
         <AssociationConnector Association="CJBDatabaseModel.UserRole" ManuallyRouted="false" />
         <AssociationConnector Association="CJBDatabaseModel.UserSpecjalization" ManuallyRouted="false" />

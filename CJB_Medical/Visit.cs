@@ -24,5 +24,10 @@ namespace CJB_Medical
     
         public virtual User User { get; set; }
         public virtual Attachment Attachment { get; set; }
+
+        public override string ToString()
+        {
+            return From.ToShortTimeString();
+        }
     }
 }

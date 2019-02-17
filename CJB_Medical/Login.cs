@@ -17,7 +17,7 @@ namespace CJB_Medical
         {
             InitializeComponent();
 #if DEBUG
-            TBLogin.Text = "21111111111";
+            TBLogin.Text = "11111111111";
             TbPassword.Text = "11111111";
 #endif
         }

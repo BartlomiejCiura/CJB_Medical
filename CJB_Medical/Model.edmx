@@ -410,8 +410,8 @@
           <Property Name="Doctor_Id" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="FK_Visit_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="Visit" Type="Self.Visit" Multiplicity="*" />
+          <End Type="Self.User" Multiplicity="0..1" Role="User" />
+          <End Type="Self.Visit" Multiplicity="*" Role="Visit" />
         </Association>
         <Association Name="UserAddress">
           <End Role="Address" Type="Self.Address" Multiplicity="0..1" />
@@ -438,8 +438,8 @@
           <EntitySet Name="User" EntityType="Self.User" />
           <EntitySet Name="Visit" EntityType="Self.Visit" />
           <AssociationSet Name="FK_Visit_User" Association="Self.FK_Visit_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="Visit" EntitySet="Visit" />
+            <End EntitySet="User" Role="User" />
+            <End EntitySet="Visit" Role="Visit" />
           </AssociationSet>
           <AssociationSet Name="UserAddress" Association="Self.UserAddress">
             <End Role="Address" EntitySet="Address" />
@@ -607,6 +607,7 @@
             <EndProperty Name="Visit">
               <ScalarProperty Name="Id" ColumnName="Id" />
             </EndProperty>
+            <Condition ColumnName="User_Id" IsNull="false" />
           </AssociationSetMapping>
           <AssociationSetMapping Name="UserAddress" TypeName="CJBDatabaseModel.UserAddress" StoreEntitySet="UserAddress">
             <EndProperty Name="Address">
@@ -690,7 +691,7 @@
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
