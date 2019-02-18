@@ -33,7 +33,7 @@
             this.LblHeader = new System.Windows.Forms.Label();
             this.LblFooter = new System.Windows.Forms.Label();
             this.PnlMain = new System.Windows.Forms.Panel();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBoxMetryczka = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
@@ -43,7 +43,7 @@
             this.TbWzrost = new System.Windows.Forms.TextBox();
             this.TbWaga = new System.Windows.Forms.TextBox();
             this.CbGrupaKrwi = new System.Windows.Forms.ComboBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBoxMedyczne = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -51,7 +51,7 @@
             this.TbKey = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
             this.CbGabinet = new System.Windows.Forms.ComboBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBoxTeleadresowe = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label16 = new System.Windows.Forms.Label();
             this.TbNazwisko = new System.Windows.Forms.TextBox();
@@ -86,11 +86,11 @@
             this.CbLekarz = new System.Windows.Forms.CheckBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.PnlMain.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.groupBoxMetryczka.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.groupBoxMedyczne.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.groupBoxTeleadresowe.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -128,9 +128,9 @@
             // PnlMain
             // 
             this.PnlMain.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.PnlMain.Controls.Add(this.groupBox3);
-            this.PnlMain.Controls.Add(this.groupBox2);
-            this.PnlMain.Controls.Add(this.groupBox1);
+            this.PnlMain.Controls.Add(this.groupBoxMetryczka);
+            this.PnlMain.Controls.Add(this.groupBoxMedyczne);
+            this.PnlMain.Controls.Add(this.groupBoxTeleadresowe);
             this.PnlMain.Controls.Add(this.BtnCancel);
             this.PnlMain.Controls.Add(this.BtnRegister);
             this.PnlMain.Controls.Add(this.label1);
@@ -141,16 +141,16 @@
             this.PnlMain.Size = new System.Drawing.Size(1008, 650);
             this.PnlMain.TabIndex = 5;
             // 
-            // groupBox3
+            // groupBoxMetryczka
             // 
-            this.groupBox3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.groupBox3.Controls.Add(this.tableLayoutPanel3);
-            this.groupBox3.Location = new System.Drawing.Point(554, 33);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(376, 143);
-            this.groupBox3.TabIndex = 13;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "METRYCZKA";
+            this.groupBoxMetryczka.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.groupBoxMetryczka.Controls.Add(this.tableLayoutPanel3);
+            this.groupBoxMetryczka.Location = new System.Drawing.Point(554, 33);
+            this.groupBoxMetryczka.Name = "groupBoxMetryczka";
+            this.groupBoxMetryczka.Size = new System.Drawing.Size(376, 143);
+            this.groupBoxMetryczka.TabIndex = 13;
+            this.groupBoxMetryczka.TabStop = false;
+            this.groupBoxMetryczka.Text = "METRYCZKA";
             // 
             // tableLayoutPanel3
             // 
@@ -261,17 +261,17 @@
             this.CbGrupaKrwi.Size = new System.Drawing.Size(237, 21);
             this.CbGrupaKrwi.TabIndex = 14;
             // 
-            // groupBox2
+            // groupBoxMedyczne
             // 
-            this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.groupBox2.Controls.Add(this.tableLayoutPanel2);
-            this.groupBox2.Location = new System.Drawing.Point(551, 208);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(379, 209);
-            this.groupBox2.TabIndex = 5;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "DANE MEDYCZNE";
-            this.groupBox2.Visible = false;
+            this.groupBoxMedyczne.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.groupBoxMedyczne.Controls.Add(this.tableLayoutPanel2);
+            this.groupBoxMedyczne.Location = new System.Drawing.Point(551, 208);
+            this.groupBoxMedyczne.Name = "groupBoxMedyczne";
+            this.groupBoxMedyczne.Size = new System.Drawing.Size(379, 209);
+            this.groupBoxMedyczne.TabIndex = 5;
+            this.groupBoxMedyczne.TabStop = false;
+            this.groupBoxMedyczne.Text = "DANE MEDYCZNE";
+            this.groupBoxMedyczne.Visible = false;
             // 
             // tableLayoutPanel2
             // 
@@ -401,18 +401,18 @@
             this.CbGabinet.Size = new System.Drawing.Size(237, 21);
             this.CbGabinet.TabIndex = 14;
             // 
-            // groupBox1
+            // groupBoxTeleadresowe
             // 
-            this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.groupBox1.Controls.Add(this.tableLayoutPanel1);
-            this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Location = new System.Drawing.Point(78, 33);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(464, 384);
-            this.groupBox1.TabIndex = 4;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "DANE TELEADRESOWE";
+            this.groupBoxTeleadresowe.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.groupBoxTeleadresowe.Controls.Add(this.tableLayoutPanel1);
+            this.groupBoxTeleadresowe.Controls.Add(this.radioButton1);
+            this.groupBoxTeleadresowe.Controls.Add(this.radioButton2);
+            this.groupBoxTeleadresowe.Location = new System.Drawing.Point(78, 33);
+            this.groupBoxTeleadresowe.Name = "groupBoxTeleadresowe";
+            this.groupBoxTeleadresowe.Size = new System.Drawing.Size(464, 384);
+            this.groupBoxTeleadresowe.TabIndex = 4;
+            this.groupBoxTeleadresowe.TabStop = false;
+            this.groupBoxTeleadresowe.Text = "DANE TELEADRESOWE";
             // 
             // tableLayoutPanel1
             // 
@@ -499,7 +499,6 @@
             this.TbLokal.Name = "TbLokal";
             this.TbLokal.Size = new System.Drawing.Size(310, 20);
             this.TbLokal.TabIndex = 5;
-            //this.TbLokal.Validating += new System.ComponentModel.CancelEventHandler(this.TbLokal_Validating);
             // 
             // TbDom
             // 
@@ -817,14 +816,14 @@
             this.Load += new System.EventHandler(this.Register_Load);
             this.PnlMain.ResumeLayout(false);
             this.PnlMain.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
+            this.groupBoxMetryczka.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
+            this.groupBoxMedyczne.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.groupBoxTeleadresowe.ResumeLayout(false);
+            this.groupBoxTeleadresowe.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
@@ -869,8 +868,8 @@
         private System.Windows.Forms.CheckBox CbLekarz;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.TextBox TbNazwisko;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBoxTeleadresowe;
+        private System.Windows.Forms.GroupBox groupBoxMedyczne;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.CheckedListBox checkedListBox1;
@@ -878,7 +877,7 @@
         private System.Windows.Forms.TextBox TbPasswordConfirm;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox CbWojewodztwo;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox groupBoxMetryczka;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;

@@ -1,6 +1,6 @@
 ﻿namespace CJB_Medical
 {
-    partial class PanelAdmina
+    partial class AdministratorPanel
     {
         /// <summary>
         /// Required designer variable.

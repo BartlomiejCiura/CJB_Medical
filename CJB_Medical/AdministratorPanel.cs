@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace CJB_Medical
 {
-    public partial class PanelAdmina : Form
+    public partial class AdministratorPanel : Form
     {
 
         User user;
         DataTable dataTablePacjent = new DataTable();
         DataTable dataTableLekarz = new DataTable();
 
-        public PanelAdmina()
+        public AdministratorPanel()
         {
             InitializeComponent();
             dataTablePacjent.Columns.Add("ID");

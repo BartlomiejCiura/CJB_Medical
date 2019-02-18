@@ -556,5 +556,38 @@ namespace CJB_Medical
 
             }
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            int x;
+            try
+            {
+                int.TryParse(DgvVisits.Rows[DgvVisits.CurrentCell.RowIndex].Cells[0].Value.ToString(), out x);
+
+            }
+            catch (Exception ex)
+            {
+                return;
+
+            }
+            using (CJBDatabaseEntities entities = new CJBDatabaseEntities())
+            {
+                visit = entities.Visit.Where(id => id.Id == x).FirstOrDefault();
+                if (visit.From < DateTime.Now)
+                {
+                    MessageBox.Show("Nie można usunąc wizyty która już się odbyła");
+                    return;
+                }
+                visit.User = null;
+                visit.Attachment = null;
+                visit.Description = null;
+                visit.Diagnosis = null;
+                visit.Recommendations = null;
+                
+                entities.SaveChanges();
+                MessageBox.Show("Wizyta została anulowana");
+                LoadData();
+            }
+        }
     }
 }

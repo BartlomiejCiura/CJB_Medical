@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.wylogujToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.oAplikacjiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -36,6 +36,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.label35 = new System.Windows.Forms.Label();
             this.lZalecenia = new System.Windows.Forms.Label();
@@ -218,6 +219,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.Gainsboro;
+            this.tabPage1.Controls.Add(this.btnCancel);
             this.tabPage1.Controls.Add(this.tableLayoutPanel6);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.DgvVisits);
@@ -227,6 +229,16 @@
             this.tabPage1.Size = new System.Drawing.Size(776, 400);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "TWOJE WIZYTY";
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(3, 371);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(250, 23);
+            this.btnCancel.TabIndex = 4;
+            this.btnCancel.Text = "ANULUJ WIZYTĘ";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // tableLayoutPanel6
             // 
@@ -245,7 +257,6 @@
             this.tableLayoutPanel6.Controls.Add(this.lData, 1, 0);
             this.tableLayoutPanel6.Controls.Add(this.label25, 0, 0);
             this.tableLayoutPanel6.Controls.Add(this.btnPobierzZalacznik, 1, 5);
-            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel6.Location = new System.Drawing.Point(253, 31);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 6;
@@ -381,7 +392,6 @@
             // 
             // label1
             // 
-            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label1.Location = new System.Drawing.Point(253, 3);
             this.label1.Name = "label1";
@@ -397,14 +407,13 @@
             this.DgvVisits.AllowUserToResizeRows = false;
             this.DgvVisits.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DgvVisits.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgvVisits.Dock = System.Windows.Forms.DockStyle.Left;
             this.DgvVisits.Location = new System.Drawing.Point(3, 3);
             this.DgvVisits.MultiSelect = false;
             this.DgvVisits.Name = "DgvVisits";
             this.DgvVisits.ReadOnly = true;
             this.DgvVisits.RowHeadersVisible = false;
             this.DgvVisits.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DgvVisits.Size = new System.Drawing.Size(250, 394);
+            this.DgvVisits.Size = new System.Drawing.Size(250, 366);
             this.DgvVisits.TabIndex = 1;
             this.DgvVisits.SelectionChanged += new System.EventHandler(this.DgvVisits_SelectionChanged);
             // 
@@ -598,6 +607,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(231, 20);
             this.textBox1.TabIndex = 22;
+            this.textBox1.UseSystemPasswordChar = true;
             // 
             // textBox2
             // 
@@ -606,6 +616,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(231, 20);
             this.textBox2.TabIndex = 22;
+            this.textBox2.UseSystemPasswordChar = true;
             // 
             // textBox3
             // 
@@ -614,6 +625,7 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(231, 20);
             this.textBox3.TabIndex = 22;
+            this.textBox3.UseSystemPasswordChar = true;
             // 
             // groupBox3
             // 
@@ -1245,15 +1257,15 @@
             this.dgvWizyty.AllowUserToDeleteRows = false;
             this.dgvWizyty.AllowUserToResizeRows = false;
             this.dgvWizyty.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.NullValue = "-";
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvWizyty.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.NullValue = "-";
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvWizyty.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvWizyty.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvWizyty.Location = new System.Drawing.Point(0, 29);
             this.dgvWizyty.MultiSelect = false;
@@ -1528,5 +1540,6 @@
         private System.Windows.Forms.Label lblAttachement;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button btnPobierzZalacznik;
+        private System.Windows.Forms.Button btnCancel;
     }
 }

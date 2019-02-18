@@ -16,10 +16,14 @@ namespace CJB_Medical
         public Login_Form()
         {
             InitializeComponent();
-#if DEBUG
-            TBLogin.Text = "11111111111";
-            TbPassword.Text = "11111111";
-#endif
+//#if DEBUG
+//            //lekarz
+//            TBLogin.Text = "11111111111";
+//            TbPassword.Text = "11111111";
+//            //pacjent
+//            //L 21111111111
+//            //h 22222222
+//#endif
         }
 
         private void TBLogin_KeyPress(object sender, KeyPressEventArgs e)
@@ -67,7 +71,7 @@ namespace CJB_Medical
                     {
                         if (userLogin.Role.Id == 3)
                         {
-                            PanelAdmina panelAdmina = new PanelAdmina();
+                            AdministratorPanel panelAdmina = new AdministratorPanel();
                             panelAdmina.Text = "ADMINISTRATOR: " + userLogin.Name + " " + userLogin.Surname;
                             panelAdmina.PassUser(userLogin);
                             panelAdmina.Show();

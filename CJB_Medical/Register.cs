@@ -195,11 +195,11 @@ namespace CJB_Medical
         {
             if (CbLekarz.Checked == true)
             {
-                groupBox2.Visible = true;
+                groupBoxMedyczne.Visible = true;
             }
             else
             {
-                groupBox2.Visible = false;
+                groupBoxMedyczne.Visible = false;
             }
         }
 
