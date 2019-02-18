@@ -186,17 +186,49 @@ namespace CJB_Medical
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            foreach (Control item in groupBox1.Controls)
-            foreach (Control item2 in groupBox3.Controls)
+            using (CJBDatabaseEntities entities = new CJBDatabaseEntities())
             {
-                if (item.Enabled == true)
+                User u = entities.User.Where(i => i.Id == user.Id).FirstOrDefault();
+
+                try
                 {
-                    item.Enabled = false;
+                    u.Name = TbImie.Text;
+                    u.Surname = TbNazwisko.Text;
+                    u.Address.Street = TbUlica.Text;
+                    u.Address.House = TbDom.Text;
+                    u.Address.Flat = TbLokal.Text;
+                    u.Address.City = TbMiejscowosc.Text;
+                    u.Address.Postcode = TbKodPocztowy.Text;
+                    u.Address.Province = CbWojewodztwo.SelectedItem.ToString();
+                    u.Phone = TbTelefon.Text;
+                    u.Email = TbEmail.Text;
+
+                    u.Age = Convert.ToInt32(TbWiek.Text);
+                    u.Height = Convert.ToInt32(TbWzrost.Text);
+                    u.Weight = Convert.ToInt32(TbWaga.Text);
+                    u.BloodType = CbGrupaKrwi.SelectedItem.ToString();
+
+                    if (u.Password.Equals(Register.PassBuild(textBox1.Text, u.Password_Salt)) && textBox1.Text != "")
+                    {
+                        if (textBox2.Text.Equals(textBox3.Text) && textBox2.Text != "")
+                        {
+                            u.Password = Register.PassBuild(textBox2.Text, u.Password_Salt);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Nowe hasło jest niepoprawne! Sprawdź dane");
+
+                        }
+                    }
+
+                   // entities.Entry(u).State = EntityState.Modified;
+                    entities.SaveChanges();
                 }
-                else
+                catch (Exception ex)
                 {
-                    item.Enabled = true;
+                    return;
                 }
+                
             }
         }
 
@@ -397,8 +429,17 @@ namespace CJB_Medical
 
         private void dtDataUmowienie_ValueChanged(object sender, EventArgs e)
         {
-            cbListaLekarzy.SelectedIndex = -1;
-            cbGodzinaUmowienie.SelectedIndex = -1;
+            try
+            {
+                cbListaLekarzy.SelectedIndex = -1;
+
+                cbGodzinaUmowienie.SelectedIndex = -1;
+            }
+            catch (Exception)
+            {
+                return;
+            }
+            
         }
 
         private void cbListaLekarzy_SelectedIndexChanged(object sender, EventArgs e)
@@ -488,6 +529,31 @@ namespace CJB_Medical
                 Image image = Image.FromStream(ms);
                 image.Save(fileName);
                 MessageBox.Show("Załącznik zapisany");
+            }
+        }
+
+        private void tabControl1_Selected(object sender, TabControlEventArgs e)
+        {
+            using (CJBDatabaseEntities entities = new CJBDatabaseEntities())
+            {
+                User u = entities.User.Where(i => i.Id == user.Id).FirstOrDefault();
+
+                TbImie.Text = u.Name;
+                TbNazwisko.Text = u.Surname;
+                TbUlica.Text = u.Address.Street;
+                TbDom.Text = u.Address.House;
+                TbLokal.Text = u.Address.Flat;
+                TbMiejscowosc.Text = u.Address.City;
+                TbKodPocztowy.Text = u.Address.Postcode;
+                CbWojewodztwo.SelectedItem = u.Address.Province;
+                TbTelefon.Text = u.Phone;
+                TbEmail.Text = u.Email;
+
+                TbWiek.Text = u.Age.ToString();
+                TbWzrost.Text = u.Height.ToString();
+                TbWaga.Text = u.Weight.ToString();
+                CbGrupaKrwi.SelectedItem = u.BloodType;
+
             }
         }
     }

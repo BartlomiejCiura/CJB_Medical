@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.wylogujToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.oAplikacjiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,6 +48,7 @@
             this.label27 = new System.Windows.Forms.Label();
             this.lData = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
+            this.btnPobierzZalacznik = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.DgvVisits = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -132,7 +133,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.cbFrom = new System.Windows.Forms.ComboBox();
-            this.btnPobierzZalacznik = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -213,6 +213,7 @@
             this.tabControl1.Size = new System.Drawing.Size(784, 448);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 3;
+            this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
             // 
             // tabPage1
             // 
@@ -366,6 +367,17 @@
             this.label25.Size = new System.Drawing.Size(36, 13);
             this.label25.TabIndex = 0;
             this.label25.Text = "DATA";
+            // 
+            // btnPobierzZalacznik
+            // 
+            this.btnPobierzZalacznik.Location = new System.Drawing.Point(81, 340);
+            this.btnPobierzZalacznik.Name = "btnPobierzZalacznik";
+            this.btnPobierzZalacznik.Size = new System.Drawing.Size(105, 23);
+            this.btnPobierzZalacznik.TabIndex = 11;
+            this.btnPobierzZalacznik.Text = "Pobierz załącznik";
+            this.btnPobierzZalacznik.UseVisualStyleBackColor = true;
+            this.btnPobierzZalacznik.Visible = false;
+            this.btnPobierzZalacznik.Click += new System.EventHandler(this.btnPobierzZalacznik_Click);
             // 
             // label1
             // 
@@ -1233,15 +1245,15 @@
             this.dgvWizyty.AllowUserToDeleteRows = false;
             this.dgvWizyty.AllowUserToResizeRows = false;
             this.dgvWizyty.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.NullValue = "-";
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvWizyty.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.NullValue = "-";
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvWizyty.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvWizyty.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvWizyty.Location = new System.Drawing.Point(0, 29);
             this.dgvWizyty.MultiSelect = false;
@@ -1359,17 +1371,6 @@
             this.cbFrom.Size = new System.Drawing.Size(257, 21);
             this.cbFrom.TabIndex = 3;
             this.cbFrom.SelectedIndexChanged += new System.EventHandler(this.cbFrom_SelectedIndexChanged);
-            // 
-            // btnPobierzZalacznik
-            // 
-            this.btnPobierzZalacznik.Location = new System.Drawing.Point(81, 340);
-            this.btnPobierzZalacznik.Name = "btnPobierzZalacznik";
-            this.btnPobierzZalacznik.Size = new System.Drawing.Size(105, 23);
-            this.btnPobierzZalacznik.TabIndex = 11;
-            this.btnPobierzZalacznik.Text = "Pobierz załącznik";
-            this.btnPobierzZalacznik.UseVisualStyleBackColor = true;
-            this.btnPobierzZalacznik.Visible = false;
-            this.btnPobierzZalacznik.Click += new System.EventHandler(this.btnPobierzZalacznik_Click);
             // 
             // Main
             // 
